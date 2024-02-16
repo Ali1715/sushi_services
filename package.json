@@ -4,7 +4,7 @@
   "description": "proyecto tecnologicas",
   "main": "index.js",
   "scripts": {
-    "start": "node -r dotenv/config dist/app.js"
+     "start": "node ./dist/app.js"
   },
   "author": "alison",
   "license": "ISC",
