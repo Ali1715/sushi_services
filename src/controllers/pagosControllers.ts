@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Producto from "../models/productosModels";
-//este es el server para las api enpoint que se llamara en el proyecto angular
+
 //get all
 export const getProductos = async( req: Request, res: Response)=> {
 const productos = await Producto.findAll();

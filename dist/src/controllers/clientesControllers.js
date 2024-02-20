@@ -12,37 +12,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProducto = exports.putProducto = exports.postProducto = exports.getProducto = exports.getProductos = void 0;
-const productosModels_1 = __importDefault(require("../models/productosModels"));
-//este es el server para las api enpoint que se llamara en el proyecto angular
+exports.deleteCliente = exports.putCliente = exports.postCliente = exports.getCliente = exports.getClientes = void 0;
+const clientesModels_1 = __importDefault(require("../models/clientesModels"));
 //get all
-const getProductos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const productos = yield productosModels_1.default.findAll();
-    res.json(productos);
+const getClientes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const clientes = yield clientesModels_1.default.findAll();
+    res.json(clientes);
 });
-exports.getProductos = getProductos;
+exports.getClientes = getClientes;
 //get 
-const getProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const producto = yield productosModels_1.default.findByPk(id);
-    res.json(producto);
+    const cliente = yield clientesModels_1.default.findByPk(id);
+    res.json(cliente);
 });
-exports.getProducto = getProducto;
+exports.getCliente = getCliente;
 //post 
-const postProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const postCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
-        const existeSushi = yield productosModels_1.default.findOne({
+        const existeSushi = yield clientesModels_1.default.findOne({
             where: { nombre: body.nombre }
         });
         if (existeSushi) {
             return res.status(400).json({
-                msg: 'Ya existe el producto ' + body.nombre
+                msg: 'Ya existe el Cliente ' + body.nombre
             });
         }
-        const producto = new productosModels_1.default(body);
-        yield producto.save();
-        res.json(producto);
+        const cliente = new clientesModels_1.default(body);
+        yield cliente.save();
+        res.json(cliente);
     }
     catch (error) {
         console.log(error);
@@ -51,20 +50,20 @@ const postProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         });
     }
 });
-exports.postProducto = postProducto;
+exports.postCliente = postCliente;
 //update
-const putProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const putCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { body } = req;
     try {
-        const producto = yield productosModels_1.default.findByPk(id);
-        if (!producto) {
+        const cliente = yield clientesModels_1.default.findByPk(id);
+        if (!cliente) {
             return res.status(404).json({
-                msg: 'No existe el producto ' + id
+                msg: 'No existe el Cliente ' + id
             });
         }
-        yield producto.update(body);
-        res.json(producto);
+        yield cliente.update(body);
+        res.json(clientesModels_1.default);
     }
     catch (error) {
         console.log(error);
@@ -73,19 +72,19 @@ const putProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
 });
-exports.putProducto = putProducto;
+exports.putCliente = putCliente;
 //delete
-const deleteProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
-        const producto = yield productosModels_1.default.findByPk(id);
-        if (!producto) {
+        const cliente = yield clientesModels_1.default.findByPk(id);
+        if (!cliente) {
             return res.status(404).json({
-                msg: 'No existe el producto ' + id
+                msg: 'No existe el Cliente ' + id
             });
         }
-        yield producto.destroy();
-        res.json({ msg: 'El producto ha sido eliminado' });
+        yield cliente.destroy();
+        res.json({ msg: 'El Cliente ha sido eliminado' });
     }
     catch (error) {
         console.log(error);
@@ -94,5 +93,5 @@ const deleteProducto = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
 });
-exports.deleteProducto = deleteProducto;
-//# sourceMappingURL=productosControllers.js.map
+exports.deleteCliente = deleteCliente;
+//# sourceMappingURL=clientesControllers.js.map

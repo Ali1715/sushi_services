@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteProducto = exports.putProducto = exports.postProducto = exports.getProducto = exports.getProductos = void 0;
 const productosModels_1 = __importDefault(require("../models/productosModels"));
-//este es el server para las api enpoint que se llamara en el proyecto angular
 //get all
 const getProductos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const productos = yield productosModels_1.default.findAll();
@@ -95,4 +94,4 @@ const deleteProducto = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.deleteProducto = deleteProducto;
-//# sourceMappingURL=productosControllers.js.map
+//# sourceMappingURL=clientesControllers%20copy.js.map

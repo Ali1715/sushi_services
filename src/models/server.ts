@@ -1,5 +1,9 @@
 import express, { Application } from 'express';
 import productosRoutes from '../../routes/productosRoutes';
+import categoriasRoutes from '../../routes/categoriasRoutes';
+import clientesRoutes from '../../routes/clientesRoutes';
+import descuentosRoutes from '../../routes/descuentosRoutes';
+import estadosRoutes from '../../routes/estadosRoutes';
 import cors from 'cors';
 import db from '../../config/conection';
 class Server{
@@ -8,6 +12,14 @@ class Server{
     private port: String;
     private apiPaths = {
         productos: '/api/productos',
+        pedidos: '/api/pedidos',
+        clientes: '/api/clientes',
+        categorias: '/api/categorias',
+        descuentos: '/api/descuentos',
+        estados: '/api/estados',
+        pagos: '/api/pagos',
+        facturas: '/api/facturas',
+        detPedidos: '/api/detPedidos',
     }
 
     constructor(){
@@ -48,6 +60,10 @@ async dbConnection(){
 
     routes(){
         this.app.use(this.apiPaths.productos, productosRoutes)
+        this.app.use(this.apiPaths.categorias, categoriasRoutes)
+        this.app.use(this.apiPaths.clientes, clientesRoutes)
+        this.app.use(this.apiPaths.descuentos, descuentosRoutes)
+        this.app.use(this.apiPaths.estados, estadosRoutes)
     }
 
     listen(){

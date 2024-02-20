@@ -1,43 +1,43 @@
 import { Request, Response } from "express";
-import Producto from "../models/productosModels";
-//este es el server para las api enpoint que se llamara en el proyecto angular
+import Descuento from "../models/descuentosModels";
+
 //get all
-export const getProductos = async( req: Request, res: Response)=> {
-const productos = await Producto.findAll();
+export const getDescuentos = async( req: Request, res: Response)=> {
+const descuentos = await Descuento.findAll();
 
     res.json(
-      productos
+      descuentos
     );
 }
 //get 
-export const getProducto = async( req: Request, res: Response)=> {
+export const getDescuento = async( req: Request, res: Response)=> {
 
 
     const { id } = req.params;
-    const producto = await Producto.findByPk(id);
+    const descuento = await Descuento.findByPk(id);
     res.json(
-        producto
+        descuento
     );
 }
 //post 
-export const postProducto = async( req: Request, res: Response)=> {
+export const postDescuento = async( req: Request, res: Response)=> {
 
     const { body } = req;
     
     try{
-        const existeSushi = await Producto.findOne({
+        const existeDescuento = await Descuento.findOne({
             where: { nombre: body.nombre}
         });
 
-        if(existeSushi){
+        if(existeDescuento){
             return res.status(400).json({
                 msg:'Ya existe el producto ' + body.nombre
             })
         }
 
-        const producto = new Producto(body);
-        await producto.save();
-        res.json(producto);
+        const descuento = new Descuento(body);
+        await descuento.save();
+        res.json(descuento);
     }catch(error){
         console.log(error);
         res.status(500).json({
@@ -48,20 +48,20 @@ export const postProducto = async( req: Request, res: Response)=> {
 }
 }
 //update
-export const putProducto = async( req: Request, res: Response)=> {
+export const putDescuento = async( req: Request, res: Response)=> {
     const { id } = req.params;
     const { body } = req;
     
     try{
-        const producto = await Producto.findByPk(id);
+        const descuento = await Descuento.findByPk(id);
 
-        if(!producto){
+        if(!descuento){
             return res.status(404).json({
                 msg:'No existe el producto ' + id
             })
         }
-        await producto.update(body);
-        res.json(producto);
+        await descuento.update(body);
+        res.json(descuento);
     }catch(error){
         console.log(error);
         res.status(500).json({
@@ -72,23 +72,23 @@ export const putProducto = async( req: Request, res: Response)=> {
 }
 }
 //delete
-export const deleteProducto = async( req: Request, res: Response)=> {
+export const deleteDescuento = async( req: Request, res: Response)=> {
     const { id } = req.params;
 
     try{
-        const producto = await Producto.findByPk(id);
+        const descuento = await Descuento.findByPk(id);
 
-        if(!producto){
+        if(!descuento){
             return res.status(404).json({
                 msg:'No existe el producto ' + id
             })
         }
-        await producto.destroy();
+        await descuento.destroy();
         res.json({msg:'El producto ha sido eliminado'});
     }catch(error){
         console.log(error);
         res.status(500).json({
-            msg:'error al actualizar',
+            msg:'error al eliminar',
         });
     
    

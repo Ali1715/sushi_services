@@ -12,37 +12,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProducto = exports.putProducto = exports.postProducto = exports.getProducto = exports.getProductos = void 0;
-const productosModels_1 = __importDefault(require("../models/productosModels"));
-//este es el server para las api enpoint que se llamara en el proyecto angular
+exports.deleteDescuento = exports.putDescuento = exports.postDescuento = exports.getDescuento = exports.getDescuentos = void 0;
+const descuentosModels_1 = __importDefault(require("../models/descuentosModels"));
 //get all
-const getProductos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const productos = yield productosModels_1.default.findAll();
-    res.json(productos);
+const getDescuentos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const descuentos = yield descuentosModels_1.default.findAll();
+    res.json(descuentos);
 });
-exports.getProductos = getProductos;
+exports.getDescuentos = getDescuentos;
 //get 
-const getProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getDescuento = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const producto = yield productosModels_1.default.findByPk(id);
-    res.json(producto);
+    const descuento = yield descuentosModels_1.default.findByPk(id);
+    res.json(descuento);
 });
-exports.getProducto = getProducto;
+exports.getDescuento = getDescuento;
 //post 
-const postProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const postDescuento = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
-        const existeSushi = yield productosModels_1.default.findOne({
+        const existeDescuento = yield descuentosModels_1.default.findOne({
             where: { nombre: body.nombre }
         });
-        if (existeSushi) {
+        if (existeDescuento) {
             return res.status(400).json({
                 msg: 'Ya existe el producto ' + body.nombre
             });
         }
-        const producto = new productosModels_1.default(body);
-        yield producto.save();
-        res.json(producto);
+        const descuento = new descuentosModels_1.default(body);
+        yield descuento.save();
+        res.json(descuento);
     }
     catch (error) {
         console.log(error);
@@ -51,20 +50,20 @@ const postProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         });
     }
 });
-exports.postProducto = postProducto;
+exports.postDescuento = postDescuento;
 //update
-const putProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const putDescuento = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { body } = req;
     try {
-        const producto = yield productosModels_1.default.findByPk(id);
-        if (!producto) {
+        const descuento = yield descuentosModels_1.default.findByPk(id);
+        if (!descuento) {
             return res.status(404).json({
                 msg: 'No existe el producto ' + id
             });
         }
-        yield producto.update(body);
-        res.json(producto);
+        yield descuento.update(body);
+        res.json(descuento);
     }
     catch (error) {
         console.log(error);
@@ -73,18 +72,18 @@ const putProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
 });
-exports.putProducto = putProducto;
+exports.putDescuento = putDescuento;
 //delete
-const deleteProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteDescuento = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
-        const producto = yield productosModels_1.default.findByPk(id);
-        if (!producto) {
+        const descuento = yield descuentosModels_1.default.findByPk(id);
+        if (!descuento) {
             return res.status(404).json({
                 msg: 'No existe el producto ' + id
             });
         }
-        yield producto.destroy();
+        yield descuento.destroy();
         res.json({ msg: 'El producto ha sido eliminado' });
     }
     catch (error) {
@@ -94,5 +93,5 @@ const deleteProducto = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
 });
-exports.deleteProducto = deleteProducto;
-//# sourceMappingURL=productosControllers.js.map
+exports.deleteDescuento = deleteDescuento;
+//# sourceMappingURL=descuentosControllers%20copy.js.map

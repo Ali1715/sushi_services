@@ -14,12 +14,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const productosRoutes_1 = __importDefault(require("../../routes/productosRoutes"));
+const categoriasRoutes_1 = __importDefault(require("../../routes/categoriasRoutes"));
+const clientesRoutes_1 = __importDefault(require("../../routes/clientesRoutes"));
 const cors_1 = __importDefault(require("cors"));
 const conection_1 = __importDefault(require("../../config/conection"));
 class Server {
     constructor() {
         this.apiPaths = {
             productos: '/api/productos',
+            pedidos: '/api/pedidos',
+            clientes: '/api/clientes',
+            categorias: '/api/categorias',
+            descuentos: '/api/descuentos',
+            estados: '/api/estados',
+            pagos: '/api/pagos',
+            facturas: '/api/facturas',
+            detPedidos: '/api/detPedidos',
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -52,6 +62,8 @@ class Server {
     }
     routes() {
         this.app.use(this.apiPaths.productos, productosRoutes_1.default);
+        this.app.use(this.apiPaths.categorias, categoriasRoutes_1.default);
+        this.app.use(this.apiPaths.clientes, clientesRoutes_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {
