@@ -7,6 +7,10 @@
     ],
     "routes": [
         {
+            "src": "/dist/routes/(.*)",
+            "dest": "/dist/routes/$1"
+        },
+        {
             "src": "/(.*)",
             "dest": "/"
         }
