@@ -16,6 +16,8 @@ const express_1 = __importDefault(require("express"));
 const productosRoutes_1 = __importDefault(require("../../routes/productosRoutes"));
 const categoriasRoutes_1 = __importDefault(require("../../routes/categoriasRoutes"));
 const clientesRoutes_1 = __importDefault(require("../../routes/clientesRoutes"));
+const descuentosRoutes_1 = __importDefault(require("../../routes/descuentosRoutes"));
+const estadosRoutes_1 = __importDefault(require("../../routes/estadosRoutes"));
 const cors_1 = __importDefault(require("cors"));
 const conection_1 = __importDefault(require("../../config/conection"));
 class Server {
@@ -64,6 +66,8 @@ class Server {
         this.app.use(this.apiPaths.productos, productosRoutes_1.default);
         this.app.use(this.apiPaths.categorias, categoriasRoutes_1.default);
         this.app.use(this.apiPaths.clientes, clientesRoutes_1.default);
+        this.app.use(this.apiPaths.descuentos, descuentosRoutes_1.default);
+        this.app.use(this.apiPaths.estados, estadosRoutes_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {

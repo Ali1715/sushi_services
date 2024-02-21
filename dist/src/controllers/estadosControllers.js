@@ -12,36 +12,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteCategoria = exports.putCategoria = exports.postCategoria = exports.getCategoria = exports.getCategorias = void 0;
-const categoriasModels_1 = __importDefault(require("../models/categoriasModels"));
+exports.deleteEstado = exports.putEstado = exports.postEstado = exports.getEstado = exports.getEstados = void 0;
+const estadosModels_1 = __importDefault(require("../models/estadosModels"));
 //get all
-const getCategorias = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const categorias = yield categoriasModels_1.default.findAll();
-    res.json(categorias);
+const getEstados = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const estados = yield estadosModels_1.default.findAll();
+    res.json(estados);
 });
-exports.getCategorias = getCategorias;
+exports.getEstados = getEstados;
 //get 
-const getCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getEstado = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const categoria = yield categoriasModels_1.default.findByPk(id);
-    res.json(categoria);
+    const estado = yield estadosModels_1.default.findByPk(id);
+    res.json(estado);
 });
-exports.getCategoria = getCategoria;
+exports.getEstado = getEstado;
 //post 
-const postCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const postEstado = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
-        const existe = yield categoriasModels_1.default.findOne({
+        const existe = yield estadosModels_1.default.findOne({
             where: { nombre: body.nombre }
         });
         if (existe) {
             return res.status(400).json({
-                msg: 'Ya existe el descuento ' + body.nombre
+                msg: 'Ya existe el Estado ' + body.nombre
             });
         }
-        const categoria = new categoriasModels_1.default(body);
-        yield categoria.save();
-        res.json(categoria);
+        const estado = new estadosModels_1.default(body);
+        yield estado.save();
+        res.json(estado);
     }
     catch (error) {
         console.log(error);
@@ -50,20 +50,20 @@ const postCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 });
-exports.postCategoria = postCategoria;
+exports.postEstado = postEstado;
 //update
-const putCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const putEstado = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { body } = req;
     try {
-        const categoria = yield categoriasModels_1.default.findByPk(id);
-        if (!categoria) {
+        const estado = yield estadosModels_1.default.findByPk(id);
+        if (!estado) {
             return res.status(404).json({
-                msg: 'No existe el descuento ' + id
+                msg: 'No existe el Estado ' + id
             });
         }
-        yield categoria.update(body);
-        res.json(categoria);
+        yield estado.update(body);
+        res.json(estado);
     }
     catch (error) {
         console.log(error);
@@ -72,19 +72,19 @@ const putCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         });
     }
 });
-exports.putCategoria = putCategoria;
+exports.putEstado = putEstado;
 //delete
-const deleteCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteEstado = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
-        const categoria = yield categoriasModels_1.default.findByPk(id);
-        if (!categoria) {
+        const estado = yield estadosModels_1.default.findByPk(id);
+        if (!estado) {
             return res.status(404).json({
-                msg: 'No existe el descuento ' + id
+                msg: 'No existe el Estado ' + id
             });
         }
-        yield categoria.destroy();
-        res.json({ msg: 'El descuento ha sido eliminado' });
+        yield estado.destroy();
+        res.json({ msg: 'El Estado ha sido eliminado' });
     }
     catch (error) {
         console.log(error);
@@ -93,5 +93,5 @@ const deleteCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function
         });
     }
 });
-exports.deleteCategoria = deleteCategoria;
-//# sourceMappingURL=categoriasControllers.js.map
+exports.deleteEstado = deleteEstado;
+//# sourceMappingURL=estadosControllers.js.map

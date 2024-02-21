@@ -12,36 +12,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteCategoria = exports.putCategoria = exports.postCategoria = exports.getCategoria = exports.getCategorias = void 0;
-const categoriasModels_1 = __importDefault(require("../models/categoriasModels"));
+exports.deleteProducto = exports.putProducto = exports.postProducto = exports.getProducto = exports.getProductos = void 0;
+const productosModels_1 = __importDefault(require("../models/productosModels"));
 //get all
-const getCategorias = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const categorias = yield categoriasModels_1.default.findAll();
-    res.json(categorias);
+const getProductos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const productos = yield productosModels_1.default.findAll();
+    res.json(productos);
 });
-exports.getCategorias = getCategorias;
+exports.getProductos = getProductos;
 //get 
-const getCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const categoria = yield categoriasModels_1.default.findByPk(id);
-    res.json(categoria);
+    const producto = yield productosModels_1.default.findByPk(id);
+    res.json(producto);
 });
-exports.getCategoria = getCategoria;
+exports.getProducto = getProducto;
 //post 
-const postCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const postProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
-        const existe = yield categoriasModels_1.default.findOne({
+        const existeSushi = yield productosModels_1.default.findOne({
             where: { nombre: body.nombre }
         });
-        if (existe) {
+        if (existeSushi) {
             return res.status(400).json({
-                msg: 'Ya existe el descuento ' + body.nombre
+                msg: 'Ya existe el producto ' + body.nombre
             });
         }
-        const categoria = new categoriasModels_1.default(body);
-        yield categoria.save();
-        res.json(categoria);
+        const producto = new productosModels_1.default(body);
+        yield producto.save();
+        res.json(producto);
     }
     catch (error) {
         console.log(error);
@@ -50,20 +50,20 @@ const postCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 });
-exports.postCategoria = postCategoria;
+exports.postProducto = postProducto;
 //update
-const putCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const putProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { body } = req;
     try {
-        const categoria = yield categoriasModels_1.default.findByPk(id);
-        if (!categoria) {
+        const producto = yield productosModels_1.default.findByPk(id);
+        if (!producto) {
             return res.status(404).json({
-                msg: 'No existe el descuento ' + id
+                msg: 'No existe el producto ' + id
             });
         }
-        yield categoria.update(body);
-        res.json(categoria);
+        yield producto.update(body);
+        res.json(producto);
     }
     catch (error) {
         console.log(error);
@@ -72,19 +72,19 @@ const putCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         });
     }
 });
-exports.putCategoria = putCategoria;
+exports.putProducto = putProducto;
 //delete
-const deleteCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
-        const categoria = yield categoriasModels_1.default.findByPk(id);
-        if (!categoria) {
+        const producto = yield productosModels_1.default.findByPk(id);
+        if (!producto) {
             return res.status(404).json({
-                msg: 'No existe el descuento ' + id
+                msg: 'No existe el producto ' + id
             });
         }
-        yield categoria.destroy();
-        res.json({ msg: 'El descuento ha sido eliminado' });
+        yield producto.destroy();
+        res.json({ msg: 'El producto ha sido eliminado' });
     }
     catch (error) {
         console.log(error);
@@ -93,5 +93,5 @@ const deleteCategoria = (req, res) => __awaiter(void 0, void 0, void 0, function
         });
     }
 });
-exports.deleteCategoria = deleteCategoria;
-//# sourceMappingURL=categoriasControllers.js.map
+exports.deleteProducto = deleteProducto;
+//# sourceMappingURL=detPedidosControllers.js.map
