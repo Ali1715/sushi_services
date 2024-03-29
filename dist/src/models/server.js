@@ -18,6 +18,8 @@ const categoriasRoutes_1 = __importDefault(require("../../routes/categoriasRoute
 const clientesRoutes_1 = __importDefault(require("../../routes/clientesRoutes"));
 const descuentosRoutes_1 = __importDefault(require("../../routes/descuentosRoutes"));
 const estadosRoutes_1 = __importDefault(require("../../routes/estadosRoutes"));
+const pedidosRoutes_1 = __importDefault(require("../../routes/pedidosRoutes"));
+const detPedidosRoutes_1 = __importDefault(require("../../routes/detPedidosRoutes"));
 const cors_1 = __importDefault(require("cors"));
 const conection_1 = __importDefault(require("../../config/conection"));
 class Server {
@@ -68,10 +70,12 @@ class Server {
         this.app.use(this.apiPaths.clientes, clientesRoutes_1.default);
         this.app.use(this.apiPaths.descuentos, descuentosRoutes_1.default);
         this.app.use(this.apiPaths.estados, estadosRoutes_1.default);
+        this.app.use(this.apiPaths.pedidos, pedidosRoutes_1.default);
+        this.app.use(this.apiPaths.detPedidos, detPedidosRoutes_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {
-            console.log('Server listening on port!' + this.port);
+            console.log('Server listening on port' + this.port);
         });
     }
 }

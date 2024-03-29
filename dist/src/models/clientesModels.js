@@ -15,9 +15,6 @@ const Cliente = conection_1.default.define('cliente', {
     nombre: {
         type: sequelize_1.DataTypes.STRING
     },
-    direccion: {
-        type: sequelize_1.DataTypes.STRING
-    },
     contacto: {
         type: sequelize_1.DataTypes.INTEGER
     },

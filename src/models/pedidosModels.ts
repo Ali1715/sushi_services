@@ -9,16 +9,16 @@ const Pedido =db.define('pedido', {
         primaryKey: true,
         autoIncrement: true // Assuming you want an auto-incrementing primary key
     },
-    estado_id: {
-        type: DataTypes.INTEGER
+    costo_env: {
+        type:DataTypes.DECIMAL(10,2)
     },
-    producto_id:{
+    estado_id: {
         type: DataTypes.INTEGER
     },
     cliente_id:{
         type: DataTypes.INTEGER
     },
-    envio_total:{
+    direccion:{
         type: DataTypes.DOUBLE
     },
     total:{

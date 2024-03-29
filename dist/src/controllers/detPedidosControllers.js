@@ -12,36 +12,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProducto = exports.putProducto = exports.postProducto = exports.getProducto = exports.getProductos = void 0;
-const productosModels_1 = __importDefault(require("../models/productosModels"));
+exports.deleteDetPedido = exports.putDetPedido = exports.postDetPedido = exports.getDetPedido = exports.getDetPedidos = void 0;
+const detPedidoModels_1 = __importDefault(require("../models/detPedidoModels"));
 //get all
-const getProductos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const productos = yield productosModels_1.default.findAll();
-    res.json(productos);
+const getDetPedidos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const detpedidos = yield detPedidoModels_1.default.findAll();
+    res.json(detpedidos);
 });
-exports.getProductos = getProductos;
+exports.getDetPedidos = getDetPedidos;
 //get 
-const getProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getDetPedido = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const producto = yield productosModels_1.default.findByPk(id);
-    res.json(producto);
+    const detpedido = yield detPedidoModels_1.default.findByPk(id);
+    res.json(detpedido);
 });
-exports.getProducto = getProducto;
+exports.getDetPedido = getDetPedido;
 //post 
-const postProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const postDetPedido = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
-        const existeSushi = yield productosModels_1.default.findOne({
-            where: { nombre: body.nombre }
+        const existeDetPedido = yield detPedidoModels_1.default.findOne({
+            where: { id: body.id }
         });
-        if (existeSushi) {
+        if (existeDetPedido) {
             return res.status(400).json({
-                msg: 'Ya existe el producto ' + body.nombre
+                msg: 'Ya existe el detpedido ' + body.id
             });
         }
-        const producto = new productosModels_1.default(body);
-        yield producto.save();
-        res.json(producto);
+        const detpedido = new detPedidoModels_1.default(body);
+        yield detpedido.save();
+        res.json(detpedido);
     }
     catch (error) {
         console.log(error);
@@ -50,20 +50,20 @@ const postProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         });
     }
 });
-exports.postProducto = postProducto;
+exports.postDetPedido = postDetPedido;
 //update
-const putProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const putDetPedido = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { body } = req;
     try {
-        const producto = yield productosModels_1.default.findByPk(id);
-        if (!producto) {
+        const detpedido = yield detPedidoModels_1.default.findByPk(id);
+        if (!detpedido) {
             return res.status(404).json({
-                msg: 'No existe el producto ' + id
+                msg: 'No existe el detpedido ' + id
             });
         }
-        yield producto.update(body);
-        res.json(producto);
+        yield detpedido.update(body);
+        res.json(detpedido);
     }
     catch (error) {
         console.log(error);
@@ -72,18 +72,18 @@ const putProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
 });
-exports.putProducto = putProducto;
+exports.putDetPedido = putDetPedido;
 //delete
-const deleteProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteDetPedido = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
-        const producto = yield productosModels_1.default.findByPk(id);
-        if (!producto) {
+        const detpedido = yield detPedidoModels_1.default.findByPk(id);
+        if (!detpedido) {
             return res.status(404).json({
-                msg: 'No existe el producto ' + id
+                msg: 'No existe el detpedido ' + id
             });
         }
-        yield producto.destroy();
+        yield detpedido.destroy();
         res.json({ msg: 'El producto ha sido eliminado' });
     }
     catch (error) {
@@ -93,5 +93,5 @@ const deleteProducto = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
 });
-exports.deleteProducto = deleteProducto;
+exports.deleteDetPedido = deleteDetPedido;
 //# sourceMappingURL=detPedidosControllers.js.map

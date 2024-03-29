@@ -25,10 +25,10 @@ const Producto =db.define('producto', {
         type: DataTypes.INTEGER
     },
     categoria_id:{
-        type: DataTypes.BIGINT
+        type: DataTypes.INTEGER
     },
     descuento_id:{
-        type: DataTypes.BIGINT
+        type: DataTypes.INTEGER
     },
    
 

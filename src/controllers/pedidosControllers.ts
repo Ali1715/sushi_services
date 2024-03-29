@@ -1,43 +1,43 @@
 import { Request, Response } from "express";
-import Producto from "../models/productosModels";
+import Pedido from "../models/pedidosModels";
 
 //get all
-export const getProductos = async( req: Request, res: Response)=> {
-const productos = await Producto.findAll();
+export const getPedidos = async( req: Request, res: Response)=> {
+const pedidos = await Pedido.findAll();
 
     res.json(
-      productos
+        pedidos
     );
 }
 //get 
-export const getProducto = async( req: Request, res: Response)=> {
+export const getPedido = async( req: Request, res: Response)=> {
 
 
     const { id } = req.params;
-    const producto = await Producto.findByPk(id);
+    const pedido = await Pedido.findByPk(id);
     res.json(
-        producto
+        pedido
     );
 }
 //post 
-export const postProducto = async( req: Request, res: Response)=> {
+export const postPedido = async( req: Request, res: Response)=> {
 
     const { body } = req;
     
     try{
-        const existeSushi = await Producto.findOne({
-            where: { nombre: body.nombre}
+        const existePedido = await Pedido.findOne({
+            where: { id: body.id}
         });
 
-        if(existeSushi){
+        if(existePedido){
             return res.status(400).json({
-                msg:'Ya existe el producto ' + body.nombre
+                msg:'Ya existe el pedido ' + body.id
             })
         }
 
-        const producto = new Producto(body);
-        await producto.save();
-        res.json(producto);
+        const pedido = new Pedido(body);
+        await pedido.save();
+        res.json(pedido);
     }catch(error){
         console.log(error);
         res.status(500).json({
@@ -48,20 +48,20 @@ export const postProducto = async( req: Request, res: Response)=> {
 }
 }
 //update
-export const putProducto = async( req: Request, res: Response)=> {
+export const putPedido = async( req: Request, res: Response)=> {
     const { id } = req.params;
     const { body } = req;
     
     try{
-        const producto = await Producto.findByPk(id);
+        const pedido = await Pedido.findByPk(id);
 
-        if(!producto){
+        if(!pedido){
             return res.status(404).json({
-                msg:'No existe el producto ' + id
+                msg:'No existe el pedido ' + id
             })
         }
-        await producto.update(body);
-        res.json(producto);
+        await pedido.update(body);
+        res.json(pedido);
     }catch(error){
         console.log(error);
         res.status(500).json({
@@ -72,19 +72,19 @@ export const putProducto = async( req: Request, res: Response)=> {
 }
 }
 //delete
-export const deleteProducto = async( req: Request, res: Response)=> {
+export const deletePedido = async( req: Request, res: Response)=> {
     const { id } = req.params;
 
     try{
-        const producto = await Producto.findByPk(id);
+        const pedido = await Pedido.findByPk(id);
 
-        if(!producto){
+        if(!pedido){
             return res.status(404).json({
-                msg:'No existe el producto ' + id
+                msg:'No existe el pedido ' + id
             })
         }
-        await producto.destroy();
-        res.json({msg:'El producto ha sido eliminado'});
+        await pedido.destroy();
+        res.json({msg:'El pedido ha sido eliminado'});
     }catch(error){
         console.log(error);
         res.status(500).json({

@@ -12,9 +12,6 @@ const Cliente =db.define('cliente', {
     nombre: {
         type: DataTypes.STRING
     },
-    direccion:{
-        type: DataTypes.STRING
-    },
     contacto:{
         type: DataTypes.INTEGER
     },

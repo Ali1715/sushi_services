@@ -28,10 +28,10 @@ const Producto = conection_1.default.define('producto', {
         type: sequelize_1.DataTypes.INTEGER
     },
     categoria_id: {
-        type: sequelize_1.DataTypes.BIGINT
+        type: sequelize_1.DataTypes.INTEGER
     },
     descuento_id: {
-        type: sequelize_1.DataTypes.BIGINT
+        type: sequelize_1.DataTypes.INTEGER
     },
 });
 exports.default = Producto;
