@@ -2,9 +2,9 @@
   "name": "proyecto_sushi",
   "version": "1.0.0",
   "description": "proyecto tecnologicas",
-  "main": "index.js",
+  "main": "./dist/app.js",
   "scripts": {
-    "dev": "nodemon dist/app.js",
+    "dev": "nodemon ./dist/app.js",
     "start": "node ./dist/app.js"
   },
   "author": "alison",

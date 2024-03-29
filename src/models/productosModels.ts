@@ -18,21 +18,19 @@ const Producto =db.define('producto', {
     precio:{
         type: DataTypes.DOUBLE
     },
-    imagen_url:{
+    imagen:{
         type: DataTypes.STRING
     },
     stock:{
         type: DataTypes.INTEGER
     },
     categoria_id:{
-        type: DataTypes.BIGINT
+        type: DataTypes.INTEGER
     },
     descuento_id:{
-        type: DataTypes.BIGINT
+        type: DataTypes.INTEGER
     },
-    fav:{
-        type: DataTypes.CHAR
-    }
+   
 
 
 

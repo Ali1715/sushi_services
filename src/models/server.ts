@@ -4,6 +4,8 @@ import categoriasRoutes from '../../routes/categoriasRoutes';
 import clientesRoutes from '../../routes/clientesRoutes';
 import descuentosRoutes from '../../routes/descuentosRoutes';
 import estadosRoutes from '../../routes/estadosRoutes';
+import pedidosRoutes from '../../routes/pedidosRoutes';
+import detPedidosRoutes from '../../routes/detPedidosRoutes';
 import cors from 'cors';
 import db from '../../config/conection';
 class Server{
@@ -20,6 +22,7 @@ class Server{
         pagos: '/api/pagos',
         facturas: '/api/facturas',
         detPedidos: '/api/detPedidos',
+
     }
 
     constructor(){
@@ -64,11 +67,13 @@ async dbConnection(){
         this.app.use(this.apiPaths.clientes, clientesRoutes)
         this.app.use(this.apiPaths.descuentos, descuentosRoutes)
         this.app.use(this.apiPaths.estados, estadosRoutes)
+        this.app.use(this.apiPaths.pedidos, pedidosRoutes)
+        this.app.use(this.apiPaths.detPedidos, detPedidosRoutes)
     }
 
     listen(){
         this.app.listen(this.port, () =>{
-            console.log('Server listening on port!' + this.port);
+            console.log('Server listening on port' + this.port);
         })
     }
 

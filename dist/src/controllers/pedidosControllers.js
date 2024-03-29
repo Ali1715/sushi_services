@@ -12,36 +12,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProducto = exports.putProducto = exports.postProducto = exports.getProducto = exports.getProductos = void 0;
-const productosModels_1 = __importDefault(require("../models/productosModels"));
+exports.deletePedido = exports.putPedido = exports.postPedido = exports.getPedido = exports.getPedidos = void 0;
+const pedidosModels_1 = __importDefault(require("../models/pedidosModels"));
 //get all
-const getProductos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const productos = yield productosModels_1.default.findAll();
-    res.json(productos);
+const getPedidos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const pedidos = yield pedidosModels_1.default.findAll();
+    res.json(pedidos);
 });
-exports.getProductos = getProductos;
+exports.getPedidos = getPedidos;
 //get 
-const getProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getPedido = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const producto = yield productosModels_1.default.findByPk(id);
-    res.json(producto);
+    const pedido = yield pedidosModels_1.default.findByPk(id);
+    res.json(pedido);
 });
-exports.getProducto = getProducto;
+exports.getPedido = getPedido;
 //post 
-const postProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const postPedido = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
-        const existeSushi = yield productosModels_1.default.findOne({
-            where: { nombre: body.nombre }
+        const existePedido = yield pedidosModels_1.default.findOne({
+            where: { id: body.id }
         });
-        if (existeSushi) {
+        if (existePedido) {
             return res.status(400).json({
-                msg: 'Ya existe el producto ' + body.nombre
+                msg: 'Ya existe el pedido ' + body.id
             });
         }
-        const producto = new productosModels_1.default(body);
-        yield producto.save();
-        res.json(producto);
+        const pedido = new pedidosModels_1.default(body);
+        yield pedido.save();
+        res.json(pedido);
     }
     catch (error) {
         console.log(error);
@@ -50,20 +50,20 @@ const postProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         });
     }
 });
-exports.postProducto = postProducto;
+exports.postPedido = postPedido;
 //update
-const putProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const putPedido = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { body } = req;
     try {
-        const producto = yield productosModels_1.default.findByPk(id);
-        if (!producto) {
+        const pedido = yield pedidosModels_1.default.findByPk(id);
+        if (!pedido) {
             return res.status(404).json({
-                msg: 'No existe el producto ' + id
+                msg: 'No existe el pedido ' + id
             });
         }
-        yield producto.update(body);
-        res.json(producto);
+        yield pedido.update(body);
+        res.json(pedido);
     }
     catch (error) {
         console.log(error);
@@ -72,19 +72,19 @@ const putProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
 });
-exports.putProducto = putProducto;
+exports.putPedido = putPedido;
 //delete
-const deleteProducto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deletePedido = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
-        const producto = yield productosModels_1.default.findByPk(id);
-        if (!producto) {
+        const pedido = yield pedidosModels_1.default.findByPk(id);
+        if (!pedido) {
             return res.status(404).json({
-                msg: 'No existe el producto ' + id
+                msg: 'No existe el pedido ' + id
             });
         }
-        yield producto.destroy();
-        res.json({ msg: 'El producto ha sido eliminado' });
+        yield pedido.destroy();
+        res.json({ msg: 'El pedido ha sido eliminado' });
     }
     catch (error) {
         console.log(error);
@@ -93,5 +93,5 @@ const deleteProducto = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
 });
-exports.deleteProducto = deleteProducto;
+exports.deletePedido = deletePedido;
 //# sourceMappingURL=pedidosControllers.js.map

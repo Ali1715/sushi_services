@@ -21,21 +21,18 @@ const Producto = conection_1.default.define('producto', {
     precio: {
         type: sequelize_1.DataTypes.DOUBLE
     },
-    imagen_url: {
+    imagen: {
         type: sequelize_1.DataTypes.STRING
     },
     stock: {
         type: sequelize_1.DataTypes.INTEGER
     },
     categoria_id: {
-        type: sequelize_1.DataTypes.BIGINT
+        type: sequelize_1.DataTypes.INTEGER
     },
     descuento_id: {
-        type: sequelize_1.DataTypes.BIGINT
+        type: sequelize_1.DataTypes.INTEGER
     },
-    fav: {
-        type: sequelize_1.DataTypes.CHAR
-    }
 });
 exports.default = Producto;
 //# sourceMappingURL=productosModels.js.map
