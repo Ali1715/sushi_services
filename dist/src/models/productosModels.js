@@ -21,7 +21,7 @@ const Producto = conection_1.default.define('producto', {
     precio: {
         type: sequelize_1.DataTypes.DOUBLE
     },
-    imagen_url: {
+    imagen: {
         type: sequelize_1.DataTypes.STRING
     },
     stock: {
@@ -33,9 +33,6 @@ const Producto = conection_1.default.define('producto', {
     descuento_id: {
         type: sequelize_1.DataTypes.BIGINT
     },
-    fav: {
-        type: sequelize_1.DataTypes.CHAR
-    }
 });
 exports.default = Producto;
 //# sourceMappingURL=productosModels.js.map

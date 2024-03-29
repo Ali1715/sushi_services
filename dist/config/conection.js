@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 // conection.js
 const sequelize_1 = require("sequelize");
-const dbHost = process.env.DB_HOST || 'viaduct.proxy.rlwy.net';
-const dbName = process.env.DB_NAME || 'railway';
-const username = process.env.DB_USER || 'root';
-const password = process.env.DB_PASSWORD || 'eFdHGD22c-dH11d6bCbCFcc-BCaH3-B1';
-const dbPort = process.env.DB_PORT || '44717';
+const dbHost = "bexmxb8rvdjvmvcw1gk1-mysql.services.clever-cloud.com";
+const dbName = "bexmxb8rvdjvmvcw1gk1";
+const username = "uyly5lcjcyerfmnq";
+const password = "eEm0iureFKRFZ574xOUG";
+const dbPort = "3306";
 const dbPortNumber = parseInt(dbPort, 10);
 const db = new sequelize_1.Sequelize(dbName, username, password, {
     host: dbHost,
