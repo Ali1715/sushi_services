@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletePedido = exports.putPedido = exports.postPedido = exports.getPedido = exports.getPedidos = void 0;
+exports.deletePedido = exports.putPedido = exports.postPedido = exports.getTheLastPedido = exports.getPedido = exports.getPedidos = void 0;
 const pedidosModels_1 = __importDefault(require("../models/pedidosModels"));
 //get all
 const getPedidos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -27,6 +27,25 @@ const getPedido = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.json(pedido);
 });
 exports.getPedido = getPedido;
+// get the last pedido
+const getTheLastPedido = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const ultimoPedido = yield pedidosModels_1.default.findOne({
+            order: [['createdAt', 'DESC']], // Ordena los pedidos por fecha de creación de forma descendente
+        });
+        if (ultimoPedido) {
+            res.json(ultimoPedido);
+        }
+        else {
+            res.status(404).send('No se encontró ningún pedido');
+        }
+    }
+    catch (error) {
+        console.error('Error al obtener el último pedido:', error);
+        res.status(500).send('Error interno del servidor');
+    }
+});
+exports.getTheLastPedido = getTheLastPedido;
 //post 
 const postPedido = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;

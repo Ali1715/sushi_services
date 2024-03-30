@@ -9,5 +9,6 @@ router.post('/', pedidosControllers_1.postPedido);
 router.get('/:id', pedidosControllers_1.getPedido);
 router.put('/:id', pedidosControllers_1.putPedido);
 router.delete('/:id', pedidosControllers_1.deletePedido);
+router.get('/ultimo', pedidosControllers_1.getTheLastPedido);
 exports.default = router;
 //# sourceMappingURL=pedidosRoutes.js.map
