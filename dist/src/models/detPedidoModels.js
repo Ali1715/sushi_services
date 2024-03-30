@@ -25,5 +25,13 @@ const detPedido = conection_1.default.define('detalle_pedido', {
         type: sequelize_1.DataTypes.DOUBLE
     }
 });
+// Sincronizar el modelo con la base de datos
+conection_1.default.sync()
+    .then(() => {
+    console.log('Modelo sincronizado correctamente con la base de datos.');
+})
+    .catch(error => {
+    console.error('Error al sincronizar el modelo con la base de datos:', error);
+});
 exports.default = detPedido;
 //# sourceMappingURL=detPedidoModels.js.map

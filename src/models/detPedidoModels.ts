@@ -25,5 +25,12 @@ const detPedido =db.define('detalle_pedido', {
 
 
 })
-
+// Sincronizar el modelo con la base de datos
+db.sync()
+  .then(() => {
+    console.log('Modelo sincronizado correctamente con la base de datos.');
+  })
+  .catch(error => {
+    console.error('Error al sincronizar el modelo con la base de datos:', error);
+  });
 export default detPedido;

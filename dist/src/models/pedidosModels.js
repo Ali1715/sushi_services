@@ -12,17 +12,11 @@ const Pedido = conection_1.default.define('pedido', {
         primaryKey: true,
         autoIncrement: true // Assuming you want an auto-incrementing primary key
     },
-    costo_env: {
-        type: sequelize_1.DataTypes.DECIMAL(10, 2)
-    },
     estado_id: {
         type: sequelize_1.DataTypes.INTEGER
     },
-    cliente_id: {
-        type: sequelize_1.DataTypes.INTEGER
-    },
-    direccion: {
-        type: sequelize_1.DataTypes.DOUBLE
+    nombre: {
+        type: sequelize_1.DataTypes.STRING
     },
     total: {
         type: sequelize_1.DataTypes.DOUBLE
