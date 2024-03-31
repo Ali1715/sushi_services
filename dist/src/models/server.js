@@ -20,6 +20,8 @@ const descuentosRoutes_1 = __importDefault(require("../../routes/descuentosRoute
 const estadosRoutes_1 = __importDefault(require("../../routes/estadosRoutes"));
 const pedidosRoutes_1 = __importDefault(require("../../routes/pedidosRoutes"));
 const detPedidosRoutes_1 = __importDefault(require("../../routes/detPedidosRoutes"));
+const pedidosLastRoutes_1 = __importDefault(require("../../routes/pedidosLastRoutes"));
+const detPedidosLastRoutes_1 = __importDefault(require("../../routes/detPedidosLastRoutes"));
 const cors_1 = __importDefault(require("cors"));
 const conection_1 = __importDefault(require("../../config/conection"));
 class Server {
@@ -34,6 +36,8 @@ class Server {
             pagos: '/api/pagos',
             facturas: '/api/facturas',
             detPedidos: '/api/detPedidos',
+            pedidosLast: '/api/lastpedidos',
+            detPedidosLast: '/api/lastdetpedidos',
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -72,6 +76,8 @@ class Server {
         this.app.use(this.apiPaths.estados, estadosRoutes_1.default);
         this.app.use(this.apiPaths.pedidos, pedidosRoutes_1.default);
         this.app.use(this.apiPaths.detPedidos, detPedidosRoutes_1.default);
+        this.app.use(this.apiPaths.pedidosLast, pedidosLastRoutes_1.default);
+        this.app.use(this.apiPaths.detPedidosLast, detPedidosLastRoutes_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {

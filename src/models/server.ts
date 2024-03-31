@@ -6,6 +6,8 @@ import descuentosRoutes from '../../routes/descuentosRoutes';
 import estadosRoutes from '../../routes/estadosRoutes';
 import pedidosRoutes from '../../routes/pedidosRoutes';
 import detPedidosRoutes from '../../routes/detPedidosRoutes';
+import pedidosLastRoutes from '../../routes/pedidosLastRoutes';
+import detPedidosLastRoutes from '../../routes/detPedidosLastRoutes';
 import cors from 'cors';
 import db from '../../config/conection';
 class Server{
@@ -22,6 +24,8 @@ class Server{
         pagos: '/api/pagos',
         facturas: '/api/facturas',
         detPedidos: '/api/detPedidos',
+        pedidosLast: '/api/lastpedidos',
+        detPedidosLast: '/api/lastdetpedidos',
 
     }
 
@@ -69,6 +73,8 @@ async dbConnection(){
         this.app.use(this.apiPaths.estados, estadosRoutes)
         this.app.use(this.apiPaths.pedidos, pedidosRoutes)
         this.app.use(this.apiPaths.detPedidos, detPedidosRoutes)
+        this.app.use(this.apiPaths.pedidosLast, pedidosLastRoutes)
+        this.app.use(this.apiPaths.detPedidosLast, detPedidosLastRoutes)
     }
 
     listen(){
